@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    @foreach($articles as $article)
-        <h1>{{ $article['title'] }}</h1>
-        <p>{{ $article['content'] }}</p>
-        <br>
-    @endforeach
+        <h2>List of conferences</h2>
+        @guest()
+        @else
+        <a href="{{ route('conferences.create') }}"><button type="button">Create conference</button></a>
+        @endguest
+        @each('conferences.partials.list', $conferences, 'conference')
 @endsection
